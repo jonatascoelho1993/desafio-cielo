@@ -10,7 +10,7 @@ public enum TipoPessoa {
 		this.codigo = codigo;
 	}
 
-	public TipoPessoa getEnum(String codigo) {
+	public static TipoPessoa getEnum(String codigo) {
 		TipoPessoa[] tipos = TipoPessoa.values();
 		for (int i = 0; i < tipos.length; i++) {
 			if (tipos[i].codigo == codigo) {
