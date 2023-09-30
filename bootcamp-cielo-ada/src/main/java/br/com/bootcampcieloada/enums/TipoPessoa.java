@@ -4,7 +4,7 @@ public enum TipoPessoa {
 
 	PESSOA_FISICA("PF"), PESSOA_JURIDICA("PJ");
 
-	private String codigo;
+	public String codigo;
 
 	TipoPessoa(String codigo) {
 		this.codigo = codigo;
@@ -13,7 +13,7 @@ public enum TipoPessoa {
 	public static TipoPessoa getEnum(String codigo) {
 		TipoPessoa[] tipos = TipoPessoa.values();
 		for (int i = 0; i < tipos.length; i++) {
-			if (tipos[i].codigo == codigo) {
+			if (tipos[i].codigo.equals(codigo)) {
 				return tipos[i];
 			}
 		}

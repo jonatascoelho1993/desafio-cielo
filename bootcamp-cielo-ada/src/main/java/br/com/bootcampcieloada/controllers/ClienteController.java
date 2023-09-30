@@ -33,24 +33,27 @@ public class ClienteController {
 	@GetMapping(path = "/{registroFederal}", produces = "application/json")
 	public ResponseEntity<?> buscarClienteRegistroFederal(@PathVariable String registroFederal) {
 		ClienteDTO cliente = clienteComponent.buscarCliente(registroFederal);
+		if(cliente == null)
+			return new ResponseEntity<>(cliente, HttpStatus.NOT_FOUND);
+		
 		return new ResponseEntity<>(cliente, HttpStatus.OK);
 	}
 
-	@PostMapping(params = "/", produces = "application/json")
+	@PostMapping(path = "/", produces = "application/json")
 	public ResponseEntity<?> cadastrarCliente(@RequestBody ClienteDTO cliente) {
 		ClienteDTO clienteRetorno = clienteComponent.cadastrarCliente(cliente);
 		return new ResponseEntity<>(clienteRetorno, HttpStatus.CREATED);
 	}
 
-	@PutMapping(params = "/", produces = "application/json")
+	@PutMapping(path = "/", produces = "application/json")
 	public ResponseEntity<?> alterarCliente(@RequestBody ClienteDTO cliente) {
 		ClienteDTO clienteRetorno = clienteComponent.alterarCliente(cliente);
 		return new ResponseEntity<>(clienteRetorno, HttpStatus.ACCEPTED);
 	}
 
-	@DeleteMapping(params = "/{registroFederal}")
+	@DeleteMapping(path = "/{registroFederal}")
 	public ResponseEntity<?> deletarCliente(@PathVariable String registroFederal) {
-		clienteComponent.buscarCliente(registroFederal);
+		clienteComponent.deletarCliente(registroFederal);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 

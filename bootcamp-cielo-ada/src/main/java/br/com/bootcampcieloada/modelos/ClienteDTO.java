@@ -1,10 +1,10 @@
 package br.com.bootcampcieloada.modelos;
 
-import javax.persistence.Column;
+import javax.validation.Valid;
 import javax.validation.constraints.Max;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,23 +16,21 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ClienteDTO {
-
-	@NotNull
+	
+	@NotBlank
 	private String tipoPessoa;
-
-	@NotEmpty
-	@Column(unique = true)
+	@NotBlank
 	private String registroFederal;
-
-	@NotEmpty
+	@NotBlank
 	private String nomeCliente;
-
-	@NotEmpty
+	@NotNull
+	@Min(value = 1)
 	@Max(value = 9999)
 	private Long mcc;
-
-	@NotEmpty
-	@Pattern(regexp = "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$")
+	@NotBlank
 	private String email;
+	
+	@Valid
+	private InfoComplementoPJDTO infoComplemento;
 
 }
